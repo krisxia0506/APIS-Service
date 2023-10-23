@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性与UserMapper.java保持一致位置-->
+<mapper namespace="com.xiajiayi.apisservice.mapper.PowerTableMapper">
+
+    <!--public String[] getHistoricalElectricity();-->
+    <select id="getHistoricalElectricity" resultType="com.xiajiayi.apisservice.pojo.Powertable">
+        select `buildingID`, `roomID`, `power`, DATE(`date`) as date
+        from (SELECT `power`, `date`, `buildingID`, `roomID`
+              from powertable
+              WHERE buildingID = #{buildingID}
+                AND roomID = #{roomID}
+              ORDER BY `date` DESC
+              LIMIT 0,6) as a
+        order by `date` ASC
+    </select>
+    <!--查询历史7天耗电量-->
+    <select id="getPowerConsumption" resultType="com.xiajiayi.apisservice.pojo.Powertable">
+        select `power`, `date`, `buildingID`, `roomID`
+        from (SELECT `power`, `date`, `buildingID`, `roomID`
+              from powerconsumption
+              WHERE buildingID = #{buildingID}
+                AND roomID = #{roomID}
+              ORDER BY `date` DESC
+              LIMIT 0,7) as a
+        order by `date` ASC
+    </select>
+    <!--查询7天平均耗电量-->
+    <select id="getAvgPowerConsumption" resultType="string">
+        select `power`
+        from avgpowertable
+        WHERE buildingID = #{buildingID}
+          AND roomID = #{roomID}
+    </select>
+</mapper>

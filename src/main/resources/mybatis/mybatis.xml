@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+     MyBatis核心配置文件中，标签的顺序：
+     properties?,settings?,typeAliases?,typeHandlers?,
+     objectFactory?,objectWrapperFactory?,reflectorFactory?,
+     plugins?,environments?,databaseIdProvider?,mappers?
+    -->
+
+    <!--将下划线映射为驼峰-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!--
+        设置类型别名
+        type原名
+        alias别名
+    -->
+<!--    <typeAliases>-->
+<!--        &lt;!&ndash;-->
+<!--            通过包设置类型别名，指定包下所有的类都有默认别名，不区分大小写-->
+<!--        &ndash;&gt;-->
+<!--        <package name="com.xiajiayi.mybatis.pojo"/>-->
+<!--    </typeAliases>-->
+
+</configuration>
